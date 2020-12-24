@@ -1,4 +1,9 @@
-# Vivarium Controler
+# Vivarium Controller
+Use common inexpensive open-source hardware and software to control and the environment in a Vivarium, Terrarium, or Palladium.
+*esp8266 and for sensors and controllers
+*MQTT messaging protocol for communication
+*RaspberryPi running Home Assistant w/ MQTT Broker and Node-Red for automation
+*Adafruit IO for anywhere access to environment data
 
 ## Goals:
 1. Simple solution for monitoring temperature and humidity in a Vivarium, Terrarium, or Palladium
@@ -19,14 +24,14 @@
 * [Braided Sleeving](https://www.amazon.com/gp/product/B071JH14WZ/)
 * [LulzBot PolyLite PLA](https://www.amazon.com/gp/product/B01IAVQI2E/) for the cases
 
-## Todo:
+## ToDo:
 ### Misting controller
 * Build a esp8266/relay to control main power for missting pump
 * Use [Solenoid valves](https://www.mistking.com/Solenoid-Valve-NC.html) to control which habatat is misted
 * Error checking to limit over misting
 * Modify "Sensor Pack" to monitor reservoir float valve
   
-### Light controler
+### Light Controller
 * Build esp8266/relay to control 24v T5 LED light strips
 	* [24v T5 LED light strips}(https://www.amazon.com/gp/product/B088CZNWHQ)
 	* [LED Driver 200 Watts 24V](https://www.amazon.com/gp/product/B07MZV7148/ref=ox_sc_saved_title_4?smid=A2S7ZIGVI25YZ9&psc=1)
@@ -35,4 +40,3 @@
 ### Habitat display
 * Use esp8266 and oled to display habitat data as is streams throgh the MQTT broker
   
-
