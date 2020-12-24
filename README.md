@@ -1,11 +1,11 @@
 # Vivarium-Controler
 
 ## Goals:
-  1. Simple solution for monitoring temperature and humidity in a Vivarium, Terrarium, or Palladium
-  1. Use automation to control (Home Assistant, Adafruit IO, etc)
-    1. Lights
-    1. Misting system
-    1. Fans
+1. Simple solution for monitoring temperature and humidity in a Vivarium, Terrarium, or Palladium
+1. Use automation to control (Home Assistant, Adafruit IO, etc)
+	1. Lights
+	1. Misting system
+	1. Fans
   
 ## Completed:
 
