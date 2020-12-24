@@ -24,6 +24,10 @@ Contributor:
 - Adafruit MQTT : Tony DiCola for Adafruit Industries.
 - Adafruit HTU21D-F : Adafruit Industries
 
+Version history
+- V01.01 First Version
+- V01.02 Update get Humidity and Temp with error controls; add var to control if returns Celsius or Fahrenheit
+
  ****************************************************/
 #include <ESP8266WiFi.h>
 #include "Adafruit_MQTT.h"
@@ -51,9 +55,13 @@ Contributor:
 #include "Adafruit_HTU21DF.h" // **for IO and temp/humid
 float f_tempf = 0.0;
 float f_temp = 0.0;
+float old_temp = 0.0;
 float f_hum = 0.0;
+float old_hum = 0.0;
 float temp_adjust = 0.0;                  // celsius  e.g -2 or 2
 float hum_adjust = 0.0;                   // e.g. +20, -20
+float sensor_diff = 1.0;                  // if sensor change more than this; they will not err and wait for next pass(max 5)
+int TempFahrenheit = 1;                   // 1 = report in fahrenheit
 
 Adafruit_HTU21DF htu = Adafruit_HTU21DF(); // **for IO and temp/humid
 
@@ -144,6 +152,10 @@ void setup() {
     Serial.println("Couldn't find sensor!");
     while (1);
   }
+  delay(1500);
+  old_temp = htu.readTemperature();
+  delay(1500);
+  old_hum = htu.readHumidity();  
 
   MQTT_connect();  // Connect to the MQTT Broker
 
@@ -206,36 +218,33 @@ void MQTT_connect() {
 /*****************************************************************************/
 
 void mqttPublish() {
-
-// get temperature and humidity
-  float newTemp = htu.readTemperature();             //get temp
-    newTemp = newTemp + temp_adjust;                 //if needed we can adjust the temp(calabrate)
-    f_tempf = ((newTemp * 1.8) + 32);                //Convert celsius to fahrenheit
+  
+  float post_temp = gettemp();  
     delay(100);
-    
-  float newHum = htu.readHumidity();                 //get humidity
-    newHum = newHum + hum_adjust;                    //calabrate
-
+  float post_hum = gethum();  
+ 
   Serial.print(F("\nSending Temperature "));
-  Serial.print(f_tempf);                             //or (newTemp)
+  Serial.print(post_temp);                             //or (newTemp)
   Serial.print("...");
                                                     //Publish temp to MQTT 
-  if (! tempf.publish(f_tempf)) {                   //or (newTemp)
+  if (! tempf.publish(post_temp)) {                   //or (newTemp)
     Serial.println(F("Failed"));
   } else {
     Serial.println(F("OK!"));
   }
 
   Serial.print(F("Sending Humidity "));
-  Serial.print(newHum);
+  Serial.print(post_hum);
   Serial.print("...");
 
-  if (! humid.publish(newHum)) {                    //Publish humidity to MQTT   
+  if (! humid.publish(post_hum)) {                    //Publish humidity to MQTT   
     Serial.println(F("Failed"));
   } else {
     Serial.println(F("OK!"));
   }
+  
 }
+
 
 /*****************************************************************************/
 /****************************** Call Backs ***********************************/
@@ -304,3 +313,97 @@ String str_data = data;
         digitalWrite(15, LOW);
         }
 }
+
+
+/*****************************************************************************/
+/*************************** Get Temperature *********************************/
+/*****************************************************************************/
+
+
+int errTempCnt;
+float gettemp() {
+
+float newTemp = htu.readTemperature(); 
+  newTemp = newTemp + temp_adjust;                       //if needed we can adjust the temp(calabrate)
+
+Serial.print("\nTemperature(New/Old):\t");
+Serial.print(newTemp); Serial.print("c \t\t");
+Serial.print(old_temp);Serial.println("c");
+Serial.print("Temperature error count:\t");   Serial.println(errTempCnt);  
+
+    if (checkBound(newTemp, old_temp, sensor_diff)) {
+      //change is greater than sensor diff
+      errTempCnt++;
+      if (errTempCnt > 5){                              //if we get 5 errors with out an update,
+        old_temp = newTemp;                             //assume current data is bad and update 
+        errTempCnt = 0;
+        Serial.println("Temperature updated by error count");  
+      }
+    } else {
+      //Change is with in the sensor diff range
+      old_temp = newTemp;
+      errTempCnt = 0;                                   //we have a good temp change; reset errTempCnt
+      Serial.println("Temperature updated");  
+    }
+
+  if (TempFahrenheit == 1){
+    float old_temp_f = ((old_temp * 1.8) + 32);
+    return old_temp_f;  
+  } else {
+    return old_temp;
+  }
+}
+
+
+/*****************************************************************************/
+/***************************** Get Humidity **********************************/
+/*****************************************************************************/
+
+
+/* constrain(x, a, b)
+x: if x is between a and b.
+a: if x is less than a.
+b: if x is greater than b.
+sensVal = constrain(sensVal, 10, 150);  // limits range of sensor values to between 10 and 150
+*/
+
+int errHumCnt;
+float gethum() {
+
+  float newHum = htu.readHumidity();                 //get humidity
+    newHum = constrain(newHum, 0.0, 99.99);
+    newHum = newHum + hum_adjust;                    //if needed we can adjust the temp(calabrate)
+
+Serial.print("\nHumidity(New/Old):\t");
+Serial.print(newHum ); Serial.print("c \t\t");
+Serial.print(old_hum);Serial.println("c");
+Serial.print("Humidity error count:\t");   Serial.println(errHumCnt);  
+
+    if (checkBound(newHum, old_hum, sensor_diff)) {
+      //change is greater than sensor diff
+      errHumCnt++;
+      if (errHumCnt > 5){                              //if we get 5 errors with out an update,
+        old_hum = newHum;                             //assume current data is bad and update 
+        errHumCnt = 0;
+        Serial.println("Humidity updated by error count");  
+      }
+    } else {
+      //Change is with in the sensor diff range
+      old_hum = newHum;
+      errHumCnt = 0;                                   //we have a good temp change; reset errTempCnt
+      Serial.println("Humidity updated");  
+    }
+  return old_hum;                                     //retutn old_hum record there was an error or it was already updated from newHum
+}
+
+
+/*****************************************************************************/
+/****************************** Check Bound **********************************/
+/*****************************************************************************/
+
+bool checkBound(float newValue, float prevValue, float maxDiff) {
+  return !isnan(newValue) &&
+         (newValue < prevValue - maxDiff || newValue > prevValue + maxDiff);
+}
+
+
