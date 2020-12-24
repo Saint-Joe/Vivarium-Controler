@@ -41,7 +41,7 @@ Contributor:
 #define AIO_SERVERPORT  1883                   // use 8883 for SSL
 #define AIO_USERNAME    "...mqttuser..."
 #define AIO_KEY         "...mqttpass..."
-#define AIO_SENSOR      "id001"
+#define AIO_SENSOR      "...id001..."          //user defined id, useful if you have many sensor packs
 
 //*This has beeen modified to work with a local MQTT server, AIO_SENSOR is not needed for Adafruit IO
 
