@@ -1,9 +1,9 @@
 # Vivarium Controller
 Use common inexpensive open-source hardware and software to control and the environment in a Vivarium, Terrarium, or Palladium.
-*esp8266 and for sensors and controllers
-*MQTT messaging protocol for communication
-*RaspberryPi running Home Assistant w/ MQTT Broker and Node-Red for automation
-*Adafruit IO for anywhere access to environment data
+* esp8266 and for sensors and controllers
+* MQTT messaging protocol for communication
+* RaspberryPi running Home Assistant w/ MQTT Broker and Node-Red for automation
+* Adafruit IO for anywhere access to environment data
 
 ## Goals:
 1. Simple solution for monitoring temperature and humidity in a Vivarium, Terrarium, or Palladium
