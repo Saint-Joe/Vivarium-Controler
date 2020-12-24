@@ -33,10 +33,12 @@ Use common inexpensive open-source hardware and software to control and the envi
   
 ### Light Controller
 * Build esp8266/relay to control 24v T5 LED light strips
-	* [24v T5 LED light strips}(https://www.amazon.com/gp/product/B088CZNWHQ)
+	* [24v T5 LED light strips](https://www.amazon.com/gp/product/B088CZNWHQ)
 	* [LED Driver 200 Watts 24V](https://www.amazon.com/gp/product/B07MZV7148/ref=ox_sc_saved_title_4?smid=A2S7ZIGVI25YZ9&psc=1)
 	* [Relay](https://www.amazon.com/ELEGOO-Channel-Optocoupler-Arduino-Raspberry/dp/B01HCFJC0Y/)
 
 ### Habitat display
 * Use esp8266 and oled to display habitat data as is streams throgh the MQTT broker
-  
+
+### Sensor Pack
+* Error checking code, need some code to deal with bad data from the sensor (large data swings)
