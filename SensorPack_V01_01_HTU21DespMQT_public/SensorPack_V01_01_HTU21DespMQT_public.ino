@@ -23,6 +23,7 @@ Contributor:
 - SensorPack V01.01: Keith Talbot
 - Adafruit MQTT : Tony DiCola for Adafruit Industries.
 - Adafruit HTU21D-F : Adafruit Industries
+- Paulus Schoutsen (https://www.home-assistant.io/blog/2015/10/11/measure-temperature-with-esp8266-and-report-to-mqtt/)
 
 Version history
 - V01.01 First Version
