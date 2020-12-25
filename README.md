@@ -25,7 +25,7 @@ Use common inexpensive open-source hardware and software to control and the envi
 * [LulzBot PolyLite PLA](https://www.amazon.com/gp/product/B01IAVQI2E/) for the cases
 
 ## Wish List/ToDo:
-### Misting controller
+### Misting Controller
 * Build a esp8266/relay to control main power for misting pump
 * Use [Solenoid valves](https://www.mistking.com/Solenoid-Valve-NC.html) to control which habitat is misted
 * Error checking to limit over misting
@@ -37,7 +37,7 @@ Use common inexpensive open-source hardware and software to control and the envi
 	* [LED Driver 200 Watts 24V](https://www.amazon.com/gp/product/B07MZV7148)
 	* [Relay](https://www.amazon.com/dp/B01HCFJC0Y/)
 
-### Habitat display
+### Habitat Display
 * Use esp8266 and oled to display habitat data as is streams through the MQTT broker
 
 ### Web Server
@@ -47,4 +47,13 @@ Create a simple web interface for the Sensor Pack that would alow you to make ch
 * Change the Sensor Pack's device ID
 * Modify the Temperature and Humidity offset values
 
+### Fan Pack
+Use an esp8266 and a 5v fan to control humidity in the habitat
+* 3d printed fan holder that will sit in one of my 60mm vents
+* Logic to monitor humitity and enable fan to maintain desired humitity levels
+	* will need to work with the mising controler
+* Maybe a [pwm](https://github.com/faeibson/ESPPWMFanControl) fan? 
+	* requires a 12v power supply; but that could be regulated to control the 3.3v controler
+	
 
+	
