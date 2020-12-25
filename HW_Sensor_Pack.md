@@ -17,6 +17,7 @@
 	1. Circuit boards
 	1. Wire and braided sleeve
 	1. Soldering Iron and Solder
+![get started](/images/parts.jpg)
 1. Cut 14” of the Braided Sleeving or length as you desire
 	1. Heat ends to prevent unraveling
 	1. Thread 4 wires through sleeving, leave on the spool for now.
