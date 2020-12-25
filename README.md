@@ -40,5 +40,4 @@ Use common inexpensive open-source hardware and software to control and the envi
 ### Habitat display
 * Use esp8266 and oled to display habitat data as is streams throgh the MQTT broker
 
-### Sensor Pack
-* Error checking code, need some code to deal with bad data from the sensor (large data swings)
+
