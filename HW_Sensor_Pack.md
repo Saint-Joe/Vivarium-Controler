@@ -37,6 +37,9 @@
 1. Solder the wires on to the Mini D1 (D1 is Clock and D2 is Data).
 	* ![get started](/images/minid1wired.jpg)
 1. Install and test software. I use MQTT Explorer to see data; we are looking for the 5 pins and the temperature and humidity data
+	1. You will need to update the WiFi and MQTT server settings
+	1. Each Sensor Pack should have a unique ID
+	* ![get started](/images/mqttexplorer.jpg)
 1. Hot-glue the Mini D1 into its case and then put the top on.
 	1. Make sure that the sleeve is oriented so that the two cases will align back to back.
 	1. Add some hot-glue for strain relief
@@ -46,3 +49,6 @@
 
 ![done](/images/done.jpg)
 
+## Addtional Testing
+
+Using a the software MQTT Explorer, you can send a message to topic ...unitID../read/onoff with a data packet of 1 to enable the builtin LED or 0 to turn the LED off. This could be usefull if you have 10+ and you need to find 
