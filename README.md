@@ -14,8 +14,8 @@ Use common inexpensive open-source hardware and software to control and the envi
   
 ## Completed:
 ### Sensor Pack
-* Create a Sensor Pack for monitiorin temperature and humidity 
-	* Publish MQTT Brocker, monitor MQTT and enable 4 pins on the esp board 
+* Create a Sensor Pack for monitoring temperature and humidity 
+	* Publish MQTT Broker, monitor MQTT and enable 4 pins on the esp board 
 	* Use MQTT to control 4 pins
 #### Sensor Pack Hardware & Supplies
 * [NodeMcu Mini D1](https://www.amazon.com/gp/product/B081PX9YFV/)
@@ -24,10 +24,10 @@ Use common inexpensive open-source hardware and software to control and the envi
 * [Braided Sleeving](https://www.amazon.com/gp/product/B071JH14WZ/)
 * [LulzBot PolyLite PLA](https://www.amazon.com/gp/product/B01IAVQI2E/) for the cases
 
-## ToDo:
+## Wish List/ToDo:
 ### Misting controller
-* Build a esp8266/relay to control main power for missting pump
-* Use [Solenoid valves](https://www.mistking.com/Solenoid-Valve-NC.html) to control which habatat is misted
+* Build a esp8266/relay to control main power for misting pump
+* Use [Solenoid valves](https://www.mistking.com/Solenoid-Valve-NC.html) to control which habitat is misted
 * Error checking to limit over misting
 * Modify "Sensor Pack" to monitor reservoir float valve
   
@@ -38,6 +38,13 @@ Use common inexpensive open-source hardware and software to control and the envi
 	* [Relay](https://www.amazon.com/dp/B01HCFJC0Y/)
 
 ### Habitat display
-* Use esp8266 and oled to display habitat data as is streams throgh the MQTT broker
+* Use esp8266 and oled to display habitat data as is streams through the MQTT broker
+
+### Web Server
+Create a simple web interface for the Sensor Pack that would alow you to make changes to the sensors; these changes would be saved to the eeprom and loaded on reboot
+* Change WiFi SSID and Secret 
+* Change MQTT Server, user, or password
+* Change the Sensor Pack's device ID
+* Modify the Temperature and Humidity offset values
 
 
