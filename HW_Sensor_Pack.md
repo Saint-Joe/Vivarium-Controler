@@ -2,13 +2,14 @@
 
 ## Prerequisites 
 
-*	MQTT Broker, local or public internet. MQTT is a lightweight messaging protocol that facilitates data transfer or commands to and from IoT devices.
-  *	Consider running Home Assistant w/ Mosquitto broker 
-*	Files from https://github.com/Saint-Joe/Vivarium-Controller
-  *	3d Printer to print cases
-  *	Sensor Pack software 
-*	Basic understanding of electronics and open source software (aka patience)
-*	Soldering Iron, 3D Printer, etc..
+* MQTT Broker, local or public internet. MQTT is a lightweight messaging protocol that facilitates data transfer or commands to and from IoT devices.
+  * Consider running Home Assistant w/ Mosquitto broker 
+* Files from https://github.com/Saint-Joe/Vivarium-Controller
+  * 3d Printer to print cases
+  * Sensor Pack software 
+* Basic understanding of electronics and open source software (aka patience)
+* Soldering Iron, 3D Printer, etc..
+* Watch The Hook Up's [Home Assistant Beginners Guide video](https://youtu.be/sVqyDtEjudk)
 
 
 ## Hardware Assembly
