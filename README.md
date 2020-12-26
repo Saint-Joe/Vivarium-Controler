@@ -17,6 +17,7 @@ Use common inexpensive open-source hardware and software to control and the envi
 * Create a Sensor Pack for monitoring temperature and humidity 
 	* Publish MQTT Broker, monitor MQTT and enable 4 pins on the esp board 
 	* Use MQTT to control 4 pins
+	* basic logic to discard one bad reading from the HTU21D sensor
 #### Sensor Pack Hardware & Supplies
 * [NodeMcu Mini D1](https://www.amazon.com/gp/product/B081PX9YFV/)
 * [HTU21D Temperature Humidity Sensor Breakout Module](https://www.amazon.com/dp/B07VRNW2X6/)
@@ -30,6 +31,7 @@ Use common inexpensive open-source hardware and software to control and the envi
 * Use [Solenoid valves](https://www.mistking.com/Solenoid-Valve-NC.html) to control which habitat is misted
 * Error checking to limit over misting
 * Modify "Sensor Pack" to monitor reservoir float valve
+* limit "on" time (x sec in y hours), this will prevent bad data from drowning the habitat
   
 ### Light Controller
 * Build esp8266/relay to control 24v T5 LED light strips
